@@ -1,3 +1,354 @@
 * {
   box-sizing: border-box;
 }
+
+body {
+  background-color: #e5e5e5;
+  font-family: "Roboto", sans-serif;
+}
+
+.main-page {
+  display: initial;
+}
+
+.login,
+.loading {
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  height: 667px;
+  align-items: center;
+  position: relative;
+}
+
+.login img,
+.loading img {
+  width: 130px;
+  height: 92px;
+  margin-top: 72px;
+}
+
+.login input {
+  width: 261px;
+  height: 54px;
+  background: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  margin-top: 94px;
+  color: #000000;
+}
+
+.login input::placeholder {
+  color: #aeaeae;
+}
+
+.login button {
+  width: 109px;
+  height: 45px;
+  background-color: #e7e7e7;
+  border-radius: 9px;
+  margin-top: 15px;
+  border: none;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  color: #696969;
+}
+
+.loading p {
+  width: 109px;
+  height: 45px;
+  margin-top: 80px;
+  font-weight: 450;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  color: black;
+}
+
+header {
+  width: 375px;
+  height: 80px;
+  background: #ffffff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+header img {
+  width: 75px;
+  height: 53px;
+  margin-left: 22px;
+}
+
+header > ion-icon {
+  font-size: 45px;
+  margin-right: 21px;
+}
+
+.content-container {
+  margin-top: 106px;
+}
+
+.message-container {
+  width: 375px;
+  height: 40px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 9px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.timestamp {
+  color: #aaaaaa;
+  font-weight: 400;
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+footer {
+  position: fixed;
+  width: 375px;
+  height: 80px;
+  left: 0px;
+  bottom: 0px;
+  background: #ffffff;
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: -1;
+}
+
+.public-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.private-footer {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 25px;
+  display: none;
+  align-items: center;
+  color: #505050;
+  margin-left: 17px;
+}
+
+footer input {
+  width: 300px;
+  height: 30px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+  border: none;
+  margin-left: 17px;
+}
+
+input:focus {
+  outline: none;
+}
+
+footer input::placeholder {
+  width: 145px;
+  height: 30px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+}
+
+footer ion-icon {
+  font-size: 26px;
+  margin-right: 18px;
+}
+
+.side-menu-background {
+  height: 667px;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: right;
+  display: none;
+}
+
+.side-menu {
+  width: 259px;
+  height: 667px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 259px;
+  height: 84px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  padding: 16%;
+}
+
+.active-users-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-container > ion-icon {
+  font-size: 25px;
+}
+
+.user-container,
+.visibility-container {
+  display: flex;
+  align-items: center;
+  margin-left: 18px;
+}
+
+.user-info,
+.visibility-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 6px;
+  width: 194px;
+  height: 36px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.user-info ion-icon,
+.visibility-info ion-icon {
+  font-size: 15px;
+  color: rgba(40, 187, 37, 1);
+  display: none;
+}
+
+.selected ion-icon {
+  display: flex;
+}
+
+.visibility-header {
+  width: 259px;
+  height: 66px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  padding-top: 20px;
+}
+
+.visibility-container > ion-icon {
+  font-size: 22px;
+}
+
+.activated {
+  display: flex;
+}
+
+.private {
+  background-color: #dcdcdc;
+}
+
+.public {
+  background-color: #ffffff;
+}
+
+.loader {
+  color: black;
+  font-size: 15px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin-top: 120px;
+  animation: mulShdSpin 1.3s infinite linear;
+  transform: translateZ(0);
+}
+
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow: 0 -3em 0 0.2em, 
+    2em -2em 0 0em, 3em 0 0 -1em, 
+    2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 -1em, -3em 0 0 -1em, 
+    -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 
+    3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 -1em, -3em 0 0 -1em, 
+    -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em, 
+    2em -2em 0 0, 3em 0 0 0.2em, 
+    2em 2em 0 0, 0 3em 0 -1em, 
+    -2em 2em 0 -1em, -3em 0 0 -1em, 
+    -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, 
+     -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, 
+     -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, 
+     -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 
+    3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 
+    3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
+}
+  

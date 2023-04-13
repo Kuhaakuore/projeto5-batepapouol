@@ -15,7 +15,74 @@
     <title>Bate-Papo OUL</title>
   </head>
   <body>
-    
+    <div class="login">
+      <img src="media/images/logo 2.png" alt="" />
+      <input type="text" placeholder="Digite seu nome" />
+      <button type="button">Entrar</button>
+    </div>
+    <div class="loading">
+      <img src="media/images/logo 2.png" alt="" />
+      <span class="loader"></span>
+      <p>Entrando...</p>
+    </div>
+    <div class="side-menu-background">
+      <div class="side-menu">
+        <div class="header">Escolha um contato para enviar mensagem:</div>
+        <div class="active-users-container">
+          <div class="user-container">
+            <ion-icon name="people"></ion-icon>
+            <div class="user-info">
+              <div class="name">Todos</div>
+              <div>
+                <ion-icon name="checkmark-outline"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="visibility-header">Escolha a visibilidadade:</div>
+        <div class="visibility-container">
+          <ion-icon name="lock-open"></ion-icon>
+          <div class="visibility-info">
+            <div class="visibility-type">Público</div>
+            <div>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+        <div class="visibility-container">
+          <ion-icon name="lock-closed"></ion-icon>
+          <div class="visibility-info">
+            <div class="visibility-type">Reservadamente</div>
+            <div>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-page">
+      <header>
+        <img src="media/images/logo 1.png" alt="" />
+        <ion-icon name="people" onclick="openSideMenu()"></ion-icon>
+      </header>
+      <div class="content-container">
+        <div class="message-container private">
+          <p>
+            <span class="timestamp">(09:22:48)</span>
+            <span class="user-name">João</span> reservadamente para
+            <span class="user-name">Maria</span>: Oi gatinha quer tc?
+          </p>
+        </div>
+      </div>
+      <footer>
+        <div class="public-footer">
+          <input type="text" placeholder="Escreva aqui..." />
+          <ion-icon class="pointer" name="paper-plane-outline"></ion-icon>
+        </div>
+        <div class="private-footer">Enviando para Maria (reservadamente)</div>
+      </footer>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
