@@ -5,6 +5,7 @@
 body {
   background-color: #e5e5e5;
   font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
 }
 
 .main-page {
@@ -114,6 +115,7 @@ header > ion-icon {
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 4px;
+  white-space: normal;
 }
 
 .timestamp {
@@ -133,6 +135,8 @@ p {
   font-size: 14px;
   line-height: 20px;
   color: #000000;
+  word-break:break-all;
+  width: 100%;
 }
 
 footer {
@@ -148,17 +152,16 @@ footer {
   justify-content: center;
 }
 
-.public-footer {
+.message-area {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.private-footer {
+.visibility-area {
   font-weight: 300;
   font-size: 14px;
   line-height: 25px;
-  display: none;
   align-items: center;
   color: #505050;
   margin-left: 17px;
@@ -195,10 +198,20 @@ footer ion-icon {
 }
 
 .side-menu-background {
+  width: 375px;
   height: 667px;
   background-color: rgba(0, 0, 0, 0.6);
   justify-content: right;
   display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.side-menu-dead-zone {
+  width: 100%;
+  height: 100%;
 }
 
 .side-menu {
@@ -298,6 +311,13 @@ footer ion-icon {
 
 .pointer {
   cursor: pointer;
+  position: absolute;
+  top: 15;
+  right: 0;
+}
+
+.scroll-disable {
+  overflow-y: hidden;
 }
 
 .loader {

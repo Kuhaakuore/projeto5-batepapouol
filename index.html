@@ -26,21 +26,14 @@
       <p>Entrando...</p>
     </div>
     <div class="side-menu-background">
+      <div class="side-menu-dead-zone" onclick="closeSideMenu()"></div>
       <div class="side-menu">
         <div class="header">Escolha um contato para enviar mensagem:</div>
         <div class="active-users-container">
-          <div class="user-container">
-            <ion-icon name="people"></ion-icon>
-            <div class="user-info">
-              <div class="name">Todos</div>
-              <div>
-                <ion-icon name="checkmark-outline"></ion-icon>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div class="visibility-header">Escolha a visibilidadade:</div>
-        <div class="visibility-container">
+        <div class="visibility-container" onclick="selectVisibilityType(this)" id="public">
           <ion-icon name="lock-open"></ion-icon>
           <div class="visibility-info">
             <div class="visibility-type">Público</div>
@@ -49,7 +42,7 @@
             </div>
           </div>
         </div>
-        <div class="visibility-container">
+        <div class="visibility-container" onclick="selectVisibilityType(this)" id="private">
           <ion-icon name="lock-closed"></ion-icon>
           <div class="visibility-info">
             <div class="visibility-type">Reservadamente</div>
@@ -69,11 +62,11 @@
         
       </div>
       <footer>
-        <div class="public-footer">
-          <input type="text" placeholder="Escreva aqui..." />
-          <ion-icon class="pointer" name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
+        <div class="message-area">
+          <input type="text" placeholder="Escreva aqui..." id="message"/>
         </div>
-        <div class="private-footer">Enviando para Maria (reservadamente)</div>
+        <div class="visibility-area"></div>
+        <ion-icon class="pointer" name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
       </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
