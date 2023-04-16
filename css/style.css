@@ -82,7 +82,6 @@ header {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: -1;
 }
 
 header img {
@@ -98,6 +97,7 @@ header > ion-icon {
 
 .content-container {
   margin-top: 106px;
+  margin-bottom: 84px;
 }
 
 .message-container {
@@ -113,6 +113,7 @@ header > ion-icon {
   font-style: normal;
   font-size: 14px;
   line-height: 20px;
+  margin-bottom: 4px;
 }
 
 .timestamp {
@@ -145,7 +146,6 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: -1;
 }
 
 .public-footer {
@@ -284,12 +284,20 @@ footer ion-icon {
   display: flex;
 }
 
+.status {
+  background-color: gray;
+}
+
 .private {
   background-color: #dcdcdc;
 }
 
 .public {
   background-color: #ffffff;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .loader {

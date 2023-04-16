@@ -14,7 +14,7 @@
     />
     <title>Bate-Papo OUL</title>
   </head>
-  <body>
+  <body onload="enterTheChatRoom()">
     <div class="login">
       <img src="media/images/logo 2.png" alt="" />
       <input type="text" placeholder="Digite seu nome" />
@@ -66,22 +66,17 @@
         <ion-icon name="people" onclick="openSideMenu()"></ion-icon>
       </header>
       <div class="content-container">
-        <div class="message-container private">
-          <p>
-            <span class="timestamp">(09:22:48)</span>
-            <span class="user-name">João</span> reservadamente para
-            <span class="user-name">Maria</span>: Oi gatinha quer tc?
-          </p>
-        </div>
+        
       </div>
       <footer>
         <div class="public-footer">
           <input type="text" placeholder="Escreva aqui..." />
-          <ion-icon class="pointer" name="paper-plane-outline"></ion-icon>
+          <ion-icon class="pointer" name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
         </div>
         <div class="private-footer">Enviando para Maria (reservadamente)</div>
       </footer>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="script.js"></script>
   </body>
