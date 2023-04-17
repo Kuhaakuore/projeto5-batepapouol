@@ -1,28 +1,29 @@
 axios.defaults.headers.common['Authorization'] = 'UmZLdtENxpI8L9jhyZU1TJWI';
-let lastMessage = '';
-const myUser = {
-    name: ""
-};
+
 const contentContainer = document.querySelector(".content-container");
 const activeUsersContainer = document.querySelector(".active-users-container");
 const visibilityContainerPublic = document.querySelector("#public");
 const visibilityContainerPrivate = document.querySelector("#private");
 const loadingScreen = document.querySelector(".loading");
 const mainPage = document.querySelector(".main-page");
+const visibilityArea = document.querySelector(".visibility-area");
+const input = document.querySelector("#message");
+const myUser = {
+    name: ""
+};
+
 let ricipientName = "Todos";
 let userStillActive = false;
 let messageType = "message";
-const visibilityArea = document.querySelector(".visibility-area");
-const input = document.querySelector("#message");
+let lastMessage = "$#@$";
 let confirmationButton;
+
 input.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         document.querySelector(".pointer").click();
     }
 });
-
-
 
 function enterChatRoom(button) {
     confirmationButton = button;
@@ -35,8 +36,6 @@ function enterChatRoom(button) {
 }
 
 function startSession() {
-    loadingScreen.classList.remove("activated");
-    mainPage.classList.remove("hidden");
     setInterval(keepConnection, 5000);
     getMessages();
     setInterval(getMessages, 3000);
@@ -108,13 +107,15 @@ function showMessages(data) {
         contentContainer.lastElementChild.scrollIntoView();
     }
     lastMessage = contentContainer.lastElementChild.querySelector("span").innerHTML;
+    loadingScreen.classList.remove("activated");
+    mainPage.classList.remove("hidden");
 }
 
 function sendMessage() {
     const messageText = document.querySelector("#message").value;
     const message = {
         from: myUser.name,
-        to: ricipientName,
+        to: "ranms",
         text: messageText,
         type: messageType
     };
@@ -141,7 +142,7 @@ function getParticipants() {
 function showActiveUsers(data) {
     userStillActive = false;
     activeUsersContainer.innerHTML = `
-    <div class="user-container selected" onclick="selectRicipient(this)" data-test"all">
+    <div class="user-container selected" onclick="selectRicipient(this)" data-test="all">
             <ion-icon name="people"></ion-icon>
             <div class="user-info">
               <div class="name">Todos</div>
@@ -204,6 +205,7 @@ function selectRicipient(ricipient) {
     if (ricipient.querySelector(".name").innerHTML === "Todos") {
         visibilityContainerPrivate.classList.remove("selected");
         visibilityContainerPublic.classList.add("selected");
+        messageType = "message";
     }
     ricipient.classList.add("selected");
     setMessageVisibility();
