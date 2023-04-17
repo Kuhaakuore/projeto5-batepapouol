@@ -37,7 +37,6 @@ function enterChatRoom(button) {
 function startSession() {
     loadingScreen.classList.remove("activated");
     mainPage.classList.remove("hidden");
-    keepConnection();
     setInterval(keepConnection, 5000);
     getMessages();
     setInterval(getMessages, 3000);
@@ -142,7 +141,7 @@ function getParticipants() {
 function showActiveUsers(data) {
     userStillActive = false;
     activeUsersContainer.innerHTML = `
-    <div class="user-container selected" onclick="selectRicipient(this)" data-test="all">
+    <div class="user-container selected" onclick="selectRicipient(this)" data-test"all">
             <ion-icon name="people"></ion-icon>
             <div class="user-info">
               <div class="name">Todos</div>
