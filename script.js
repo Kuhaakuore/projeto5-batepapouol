@@ -107,7 +107,7 @@ function sendMessage() {
     const messageText = document.querySelector("#message").value;
     const message = {
         from: myUser.name,
-        to: messageText,
+        to: ricipientName,
         text: messageText,
         type: messageType
     };
