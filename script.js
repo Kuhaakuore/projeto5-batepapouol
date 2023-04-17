@@ -45,7 +45,7 @@ function startSession() {
 
 function keepConnection() {
     const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/status", myUser);
-    promise.catch(userNameError);
+    promise.catch(reloadPage);
 }
 
 function getMessages() {
@@ -174,13 +174,13 @@ function showActiveUsers(data) {
 }
 
 function openSideMenu() {
-    const sideMenu = document.querySelector(".side-menu-background");
+    const sideMenu = document.querySelector(".side-menu-overlay");
     sideMenu.classList.add("activated");
     document.querySelector("body").classList.add("scroll-disable");
 }
 
 function closeSideMenu() {
-    const sideMenu = document.querySelector(".side-menu-background");
+    const sideMenu = document.querySelector(".side-menu-overlay");
     sideMenu.classList.remove("activated");
     document.querySelector("body").classList.remove("scroll-disable");
 }

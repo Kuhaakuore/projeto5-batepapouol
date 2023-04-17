@@ -197,7 +197,7 @@ footer ion-icon {
   margin-right: 18px;
 }
 
-.side-menu-background {
+.side-menu-overlay {
   width: 375px;
   height: 667px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -207,16 +207,19 @@ footer ion-icon {
   top: 0;
   right: 0;
   z-index: 1;
+  overflow-y: auto;
 }
 
 .side-menu-dead-zone {
   width: 100%;
   height: 100%;
+  position: fixed;
 }
 
 .side-menu {
+  position: absolute;
   width: 259px;
-  height: 100%;
+  height: auto;
   background: #ffffff;
   display: flex;
   flex-direction: column;
