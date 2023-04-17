@@ -124,12 +124,10 @@ function sendMessage() {
         text: messageText,
         type: messageType
     };
-    if (message.text !== '') {
-        input.value = '';
-        const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/messages", message);
-        promise.then(getMessages);
-        promise.catch(reloadPage);
-    }
+    input.value = '';
+    const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/messages", message);
+    promise.then(getMessages);
+    promise.catch(reloadPage);
 }
 
 function reloadPage(error) {
@@ -160,7 +158,6 @@ function showActiveUsers(data) {
         activeUsersContainer.firstElementChild.classList.remove("selected");
     }
     Array.from(data.data).forEach(user => {
-        if (user.name !== myUser.name) {
             activeUsersContainer.innerHTML += `
             <div class="user-container" onclick="selectRicipient(this)" data-test="participant">
                 <ion-icon name="person-circle"></ion-icon>
@@ -175,7 +172,6 @@ function showActiveUsers(data) {
                 activeUsersContainer.lastElementChild.classList.add("selected");
                 userStillActive = true;
             }
-        }
     });
     /*if (!userStillActive) {
         activeUsersContainer.firstElementChild.classList.add("selected");
@@ -209,7 +205,8 @@ function selectRicipient(ricipient) {
     });
     if (ricipient.querySelector(".name").innerHTML === "Todos") {
         visibilityContainerPrivate.classList.remove("selected");
-        visibilityContainerPublic.classList.add("selected");
+        visibilityContainerPublic.classList.remove("selected");
+        messageType = "message";
     }
     ricipient.classList.add("selected");
     setMessageVisibility();
