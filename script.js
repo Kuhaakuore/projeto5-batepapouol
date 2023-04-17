@@ -30,13 +30,14 @@ function enterChatRoom(button) {
     button.parentElement.classList.remove("activated");
     loadingScreen.classList.add("activated");
     const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants", myUser);
-    promise.then(establishConnection);
+    promise.then(startSession);
     promise.catch(userNameError);
 }
 
 function startSession() {
     loadingScreen.classList.remove("activated");
     mainPage.classList.remove("hidden");
+    keepConnection();
     setInterval(keepConnection, 5000);
     getMessages();
     setInterval(getMessages, 3000);
@@ -50,12 +51,6 @@ function userNameError(error) {
         confirmationButton.parentElement.classList.add("activated");
         confirmationButton.parentElement.querySelector("input").value = '';
     }
-}
-
-function establishConnection() {
-    const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/status", myUser);
-    promise.then(startSession);
-    promise.catch(userNameError);
 }
 
 function keepConnection() {
@@ -210,7 +205,6 @@ function selectRicipient(ricipient) {
     if (ricipient.querySelector(".name").innerHTML === "Todos") {
         visibilityContainerPrivate.classList.remove("selected");
         visibilityContainerPublic.classList.add("selected");
-        messageType = "message";
     }
     ricipient.classList.add("selected");
     setMessageVisibility();
