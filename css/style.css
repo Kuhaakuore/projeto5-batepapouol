@@ -277,6 +277,10 @@ footer ion-icon {
   display: flex;
 }
 
+.name {
+  word-break: break-all;
+}
+
 .visibility-header {
   width: 259px;
   height: 66px;

@@ -32,7 +32,7 @@ function enterChatRoom(button) {
     loadingScreen.classList.add("activated");
     const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants", myUser);
     promise.then(startSession);
-    promise.catch(userNameError);
+    promise.catch(reloadPage);
 }
 
 function startSession() {
@@ -41,14 +41,6 @@ function startSession() {
     setInterval(getMessages, 3000);
     getParticipants();
     setInterval(getParticipants, 10000);
-}
-
-function userNameError(error) {
-    if (error.response.status === 400) {
-        loadingScreen.classList.remove("activated");
-        confirmationButton.parentElement.classList.add("activated");
-        confirmationButton.parentElement.querySelector("input").value = '';
-    }
 }
 
 function keepConnection() {
