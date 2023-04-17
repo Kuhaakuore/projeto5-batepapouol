@@ -321,7 +321,6 @@ footer ion-icon {
   overflow-y: hidden;
 }
 
-
 .loader {
   color: black;
   font-size: 15px;
@@ -331,6 +330,19 @@ footer ion-icon {
   margin-top: 120px;
   animation: mulShdSpin 1.3s infinite linear;
   transform: translateZ(0);
+}
+
+@media only screen and (max-width: 600px) {
+  .main-page,
+  header,
+  .content-container,
+  footer,
+  .login,
+  .loading,
+  .message-container,
+  .side-menu-background {
+    width: 100%;
+  }
 }
 
 @keyframes mulShdSpin {
