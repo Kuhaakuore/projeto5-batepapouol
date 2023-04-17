@@ -219,10 +219,12 @@ footer ion-icon {
 .side-menu {
   position: absolute;
   width: 259px;
+  min-height: 667px;
   height: auto;
   background: #ffffff;
   display: flex;
   flex-direction: column;
+  
 }
 
 .header {
@@ -336,7 +338,7 @@ footer ion-icon {
   .login,
   .loading,
   .message-container,
-  .side-menu-background {
+  .side-menu-overlay {
     width: 100%;
   }
 }

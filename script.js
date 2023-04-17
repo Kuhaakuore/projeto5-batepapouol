@@ -132,7 +132,6 @@ function getParticipants() {
 }
 
 function showActiveUsers(data) {
-    userStillActive = false;
     activeUsersContainer.innerHTML = `
     <div class="user-container selected" onclick="selectRicipient(this)" data-test="all">
             <ion-icon name="people"></ion-icon>
@@ -147,8 +146,7 @@ function showActiveUsers(data) {
         activeUsersContainer.firstElementChild.classList.remove("selected");
     }
     Array.from(data.data).forEach(user => {
-        if (user.name !== myUser.name) {
-            activeUsersContainer.innerHTML += `
+        activeUsersContainer.innerHTML += `
             <div class="user-container" onclick="selectRicipient(this)" data-test="participant">
                 <ion-icon name="person-circle"></ion-icon>
                 <div class="user-info">
@@ -158,18 +156,10 @@ function showActiveUsers(data) {
                   </div>
                 </div>
               </div>`
-            if (ricipientName === user.name) {
-                activeUsersContainer.lastElementChild.classList.add("selected");
-                userStillActive = true;
-            }
+        if (ricipientName === user.name) {
+            activeUsersContainer.lastElementChild.classList.add("selected");
         }
     });
-    /*if (!userStillActive) {
-        activeUsersContainer.firstElementChild.classList.add("selected");
-        ricipientName = "Todos";
-        visibilityContainerPrivate.classList.remove("selected");
-        visibilityContainerPublic.classList.add("selected");
-    }*/
     setMessageVisibility();
 }
 
