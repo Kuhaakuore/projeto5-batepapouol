@@ -1,26 +1,56 @@
 axios.defaults.headers.common['Authorization'] = 'UmZLdtENxpI8L9jhyZU1TJWI';
 let lastMessage = '';
 const myUser = {
-    name: "ken"
+    name: ""
 };
 const contentContainer = document.querySelector(".content-container");
 const activeUsersContainer = document.querySelector(".active-users-container");
 const visibilityContainerPublic = document.querySelector("#public");
 const visibilityContainerPrivate = document.querySelector("#private");
+const loadingScreen = document.querySelector(".loading");
+const mainPage = document.querySelector(".main-page");
 let ricipientName = "Todos";
 let userStillActive = false;
 let messageType = "message";
 const visibilityArea = document.querySelector(".visibility-area");
+const input = document.querySelector("#message");
+let confirmationButton;
+input.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.querySelector(".pointer").click();
+    }
+});
 
-function enterTheChatRoom() {
+
+
+function enterChatRoom(button) {
+    confirmationButton = button;
+    myUser.name = button.parentElement.querySelector("input").value;
+    button.parentElement.classList.remove("activated");
+    loadingScreen.classList.add("activated");
     const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants", myUser);
+    promise.then(startSession);
     promise.catch(userNameError);
-    setInterval(keepConnection, 5000);
-    setInterval(getMessages, 3000);
-    getParticipants();
-    setInterval(getParticipants, 1000);
 }
 
+function startSession() {
+    loadingScreen.classList.remove("activated");
+    mainPage.classList.remove("hidden");
+    setInterval(keepConnection, 5000);
+    getMessages();
+    setInterval(getMessages, 3000);
+    getParticipants();
+    setInterval(getParticipants, 10000);
+}
+
+function userNameError(error) {
+    if (error.response.status === 400) {
+        loadingScreen.classList.remove("activated");
+        confirmationButton.parentElement.classList.add("activated");
+        confirmationButton.parentElement.querySelector("input").value = '';
+    }
+}
 
 function keepConnection() {
     const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/status", myUser);
@@ -38,7 +68,7 @@ function showMessages(data) {
         switch (message.type) {
             case "status":
                 contentContainer.innerHTML += `
-                    <div class="message-container status">
+                    <div class="message-container status" data-test="message">
                         <p>
                         <span class="timestamp">(${message.time})</span>
                         <span class="user-name">${message.from}</span> ${message.text}
@@ -49,7 +79,7 @@ function showMessages(data) {
             case "private_message":
                 if (message.from === myUser.name || message.to === myUser.name) {
                     contentContainer.innerHTML += `
-                    <div class="message-container private">
+                    <div class="message-container private" data-test="message">
                         <p>
                         <span class="timestamp">(${message.time})</span>
                         <span class="user-name">${message.from}</span> reservadamente para
@@ -61,7 +91,7 @@ function showMessages(data) {
 
             case "message":
                 contentContainer.innerHTML += `
-                    <div class="message-container public">
+                    <div class="message-container public" data-test="message">
                         <p>
                         <span class="timestamp">(${message.time})</span>
                         <span class="user-name">${message.from}</span> para
@@ -88,26 +118,30 @@ function sendMessage() {
         text: messageText,
         type: messageType
     };
-    const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/messages", message);
-    promise.then(getMessages);
+    if (message.text !== '') {
+        input.value = '';
+        const promise = axios.post("https://mock-api.driven.com.br/api/vm/uol/messages", message);
+        promise.then(getMessages);
+        promise.catch(reloadPage);
+    }
 }
 
-function userNameError(error) {
-    if (error.response.status === 400) {
-
-    }
+function reloadPage(error) {
+    window.location.reload();
 }
 
 function getParticipants() {
     const promise = axios.get("https://mock-api.driven.com.br/api/vm/uol/participants");
     promise.then(showActiveUsers);
-    promise.catch(userNameError);
+    promise.catch(e => {
+        console.log(e);
+    });
 }
 
 function showActiveUsers(data) {
     userStillActive = false;
     activeUsersContainer.innerHTML = `
-    <div class="user-container selected" onclick="selectRicipient(this)">
+    <div class="user-container selected" onclick="selectRicipient(this)" data-test"all">
             <ion-icon name="people"></ion-icon>
             <div class="user-info">
               <div class="name">Todos</div>
@@ -122,12 +156,12 @@ function showActiveUsers(data) {
     Array.from(data.data).forEach(user => {
         if (user.name !== myUser.name) {
             activeUsersContainer.innerHTML += `
-            <div class="user-container" onclick="selectRicipient(this)">
+            <div class="user-container" onclick="selectRicipient(this)" data-test="participant">
                 <ion-icon name="person-circle"></ion-icon>
                 <div class="user-info">
                   <div class="name">${user.name}</div>
                   <div>
-                    <ion-icon name="checkmark-outline"></ion-icon>
+                    <ion-icon name="checkmark-outline" data-test="check"></ion-icon>
                   </div>
                 </div>
               </div>`
@@ -137,24 +171,25 @@ function showActiveUsers(data) {
             }
         }
     });
-    if (!userStillActive) {
+    /*if (!userStillActive) {
         activeUsersContainer.firstElementChild.classList.add("selected");
         ricipientName = "Todos";
         visibilityContainerPrivate.classList.remove("selected");
-        visibilityContainerPublic.classList.remove("selected");
-    }
+        visibilityContainerPublic.classList.add("selected");
+    }*/
     setMessageVisibility();
 }
 
 function openSideMenu() {
     const sideMenu = document.querySelector(".side-menu-background");
     sideMenu.classList.add("activated");
-    contentContainer.classList.add("scroll-disable");
+    document.querySelector("body").classList.add("scroll-disable");
 }
 
 function closeSideMenu() {
     const sideMenu = document.querySelector(".side-menu-background");
     sideMenu.classList.remove("activated");
+    document.querySelector("body").classList.remove("scroll-disable");
 }
 
 function selectRicipient(ricipient) {
@@ -166,6 +201,10 @@ function selectRicipient(ricipient) {
             container.classList.remove("selected");
         }
     });
+    if (ricipient.querySelector(".name").innerHTML === "Todos") {
+        visibilityContainerPrivate.classList.remove("selected");
+        visibilityContainerPublic.classList.add("selected");
+    }
     ricipient.classList.add("selected");
     setMessageVisibility();
 }

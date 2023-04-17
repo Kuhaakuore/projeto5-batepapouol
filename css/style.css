@@ -5,11 +5,10 @@
 body {
   background-color: #e5e5e5;
   font-family: "Roboto", sans-serif;
-  overflow-x: hidden;
 }
 
-.main-page {
-  display: initial;
+.hidden {
+  display: none;
 }
 
 .login,
@@ -18,6 +17,8 @@ body {
   flex-direction: column;
   background-color: white;
   height: 667px;
+  width: 375px;
+  margin: auto;
   align-items: center;
   position: relative;
 }
@@ -82,7 +83,7 @@ header {
   align-items: center;
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
 }
 
 header img {
@@ -103,19 +104,18 @@ header > ion-icon {
 
 .message-container {
   width: 375px;
-  height: 40px;
+  height: 100%;
   border-radius: 2px;
   display: flex;
   align-items: center;
   padding-left: 8px;
   padding-right: 9px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-style: normal;
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 4px;
-  white-space: normal;
 }
 
 .timestamp {
@@ -216,7 +216,7 @@ footer ion-icon {
 
 .side-menu {
   width: 259px;
-  height: 667px;
+  height: 100%;
   background: #ffffff;
   display: flex;
   flex-direction: column;
@@ -249,6 +249,7 @@ footer ion-icon {
   display: flex;
   align-items: center;
   margin-left: 18px;
+  cursor: pointer;
 }
 
 .user-info,
@@ -319,6 +320,7 @@ footer ion-icon {
 .scroll-disable {
   overflow-y: hidden;
 }
+
 
 .loader {
   color: black;

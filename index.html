@@ -14,11 +14,11 @@
     />
     <title>Bate-Papo OUL</title>
   </head>
-  <body onload="enterTheChatRoom()">
-    <div class="login">
+  <body>
+    <div class="login activated">
       <img src="media/images/logo 2.png" alt="" />
-      <input type="text" placeholder="Digite seu nome" />
-      <button type="button">Entrar</button>
+      <input type="text" placeholder="Digite seu nome" data-test="input-name"/>
+      <button type="button" data-test="send-name" onclick="enterChatRoom(this)">Entrar</button>
     </div>
     <div class="loading">
       <img src="media/images/logo 2.png" alt="" />
@@ -26,47 +26,45 @@
       <p>Entrando...</p>
     </div>
     <div class="side-menu-background">
-      <div class="side-menu-dead-zone" onclick="closeSideMenu()"></div>
+      <div class="side-menu-dead-zone" onclick="closeSideMenu()" data-test="overlay"></div>
       <div class="side-menu">
         <div class="header">Escolha um contato para enviar mensagem:</div>
         <div class="active-users-container">
-          
         </div>
         <div class="visibility-header">Escolha a visibilidadade:</div>
-        <div class="visibility-container" onclick="selectVisibilityType(this)" id="public">
+        <div class="visibility-container" onclick="selectVisibilityType(this)" id="public" data-test="public">
           <ion-icon name="lock-open"></ion-icon>
           <div class="visibility-info">
             <div class="visibility-type">Público</div>
             <div>
-              <ion-icon name="checkmark-outline"></ion-icon>
+              <ion-icon name="checkmark-outline" data-test="check"></ion-icon>
             </div>
           </div>
         </div>
-        <div class="visibility-container" onclick="selectVisibilityType(this)" id="private">
+        <div class="visibility-container" onclick="selectVisibilityType(this)" id="private" data-test="private">
           <ion-icon name="lock-closed"></ion-icon>
           <div class="visibility-info">
             <div class="visibility-type">Reservadamente</div>
             <div>
-              <ion-icon name="checkmark-outline"></ion-icon>
+              <ion-icon name="checkmark-outline" data-test="check"></ion-icon>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="main-page">
+    <div class="main-page hidden">
       <header>
         <img src="media/images/logo 1.png" alt="" />
-        <ion-icon name="people" onclick="openSideMenu()"></ion-icon>
+        <ion-icon name="people" onclick="openSideMenu()" data-test="open-participants"></ion-icon>
       </header>
       <div class="content-container">
-        
       </div>
       <footer>
         <div class="message-area">
-          <input type="text" placeholder="Escreva aqui..." id="message"/>
+          <input type="text" placeholder="Escreva aqui..." id="message" data-test="input-message"/>
         </div>
-        <div class="visibility-area"></div>
-        <ion-icon class="pointer" name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
+        <div class="visibility-area" data-test="ricipient">Enviando para Todos</div>
+        <ion-icon class="pointer" name="paper-plane-outline" onclick="sendMessage()" data-test="send-message"></ion-icon>
       </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
