@@ -1,4 +1,4 @@
-axios.defaults.headers.common['Authorization'] = 'UmZLdtENxpI8L9jhyZU1TJWI';
+axios.defaults.headers.common['Authorization'] = 'K5VZywRMz64MgFSgrwcQkrir';
 
 const contentContainer = document.querySelector(".content-container");
 const activeUsersContainer = document.querySelector(".active-users-container");
